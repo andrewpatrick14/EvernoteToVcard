@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e398d099-5d9a-46c7-afc6-9e1ecd6de31c" name="Changes" comment="Initial Commit">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/apt/enextovcf/MainMultiCardImageTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/apt/enextovcf/MainMultiTest.java" afterDir="false" />
+    <list default="true" id="e398d099-5d9a-46c7-afc6-9e1ecd6de31c" name="Changes" comment="Test for multiple notes in single enex">
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/apt/enextovcf/MainTestSingleVCF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/apt/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/BusinessCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/BusinessCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/EnexVCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/EnexVCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/apt/enextovcf/EnexVCardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/apt/enextovcf/EnexVCardTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,24 +44,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.6045977&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "master",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.6045977",
+    "settings.editor.selected.configurable": "Errors"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -72,6 +72,15 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.apt.enextovcf" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn jar:jar" />
+      <command value="mvn shade:help" />
+      <command value="mvn shade:help -Ddetail=true" />
+      <command value="mvn shade:shade" />
+      <command value="mvn jar:jar shade:shade" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="BusinessCardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -136,21 +145,25 @@
       <option name="project" value="LOCAL" />
       <updated>1699770348245</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Test for multiple notes in single enex">
+      <option name="closed" value="true" />
+      <created>1699778999686</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1699778999686</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+    <MESSAGE value="Test for multiple notes in single enex" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test for multiple notes in single enex" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/apt/enextovcf/CSVContent.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/org/apt/enextovcf/ProfileImageTest.java</url>
           <line>50</line>
@@ -182,6 +195,16 @@
           <url>file://$PROJECT_DIR$/src/test/java/org/apt/enextovcf/MainMultiCardImageTest.java</url>
           <line>47</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/apt/enextovcf/Main.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/apt/enextovcf/Main.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

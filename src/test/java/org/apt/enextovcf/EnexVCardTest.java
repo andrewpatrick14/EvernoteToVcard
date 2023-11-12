@@ -47,9 +47,8 @@ class EnexVCardTest {
 
     @Test
     void testWriteWriter() throws IOException {
-        StringWriter sw = new StringWriter();
-        c.write(sw);
-        assertTrue(sw.getBuffer().toString().contains("Sand"));
+        String s = c.writeString();
+        assertTrue(s.contains("Sand"));
     }
 
 

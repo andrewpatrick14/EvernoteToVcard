@@ -10,9 +10,7 @@ import net.fortuna.ical4j.vcard.property.*;
 import org.apt.enextovcf.BusinessCard.FieldContent;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -61,18 +59,19 @@ public class EnexVCard {
     }
 
     /**Write this card to the given stream
-     * @param out
      * @throws ValidationException if the vcard format is invalid
      * @throws IOException
      */
-    public void write(Writer out) throws IOException {
-        try {
-            outputter.output(vcard, out);
+    public String writeString() throws IOException{
+        var sw = new StringWriter();
+        try (sw) {
+            outputter.output(vcard, sw);
         }
         catch (ValidationException e) {
             System.err.println(e.getMessage());
             System.err.println("Skipping invalid vCard");
         }
+        return sw.toString();
     }
 
 
@@ -86,7 +85,8 @@ public class EnexVCard {
         String uniqueName = Utils.makeUniqueFileName(directory, fullName + ".vcf");
         var outFile = new File(directory, uniqueName);
         try (var wr = Files.newBufferedWriter(outFile.toPath(), StandardCharsets.UTF_8)) {
-            write(wr);
+            outputter.output(vcard,
+                    wr);
         } catch (IOException e) {
             System.err.println("IO Error Writing to " + outFile);
         }

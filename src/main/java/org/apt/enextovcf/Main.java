@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Main{
@@ -53,14 +54,20 @@ public class Main{
             }
             List<EnexVCard> vcards = bcards.stream().map(EnexVCard::new).toList();
             if (singleFile != null) {
-                File cvsFile = new File(outDir, singleFile);
+                File outVCFFile = new File(outDir, singleFile);
                 try (BufferedWriter writer =
-                             new BufferedWriter(new FileWriter(cvsFile
+                             new BufferedWriter(new FileWriter(outVCFFile
                                      , StandardCharsets.UTF_8))) {
+                    List<String> output = new LinkedList<>();
                     for (EnexVCard vcard : vcards)
-                        vcard.write(writer);
+                        output.add(vcard.writeString());
+                    for (String s : output) {
+                        writer.write(s);
+                        writer.newLine();
+                    }
                 } catch (IOException e) {
-                    System.err.println("IO Exception writing to " + cvsFile);
+                    System.err.println("IO Exception writing to " + outVCFFile);
+                    e.printStackTrace();
                 }
             } else {
                 vcards.stream().forEach(x -> x.write(outDir));
