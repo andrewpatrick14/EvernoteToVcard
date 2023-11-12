@@ -15,7 +15,7 @@ public class BusinessCard {
     private List<FieldContent> fields = new ArrayList<>();
     private Map<String, Set<String>> fieldsmap = new HashMap<>(); // created on demand
     // skip these when parsing the enml
-    private static final String[] fieldsToIgnore = { "label", "context", "contact", "value" };
+    private static final String[] fieldsToIgnore = { "label", "context", "contact", "value", "profile-image" };
     private static final Set<String> fieldsToIgnoreSet;
     private ProfileImage profileImage = new ProfileImage();
     private CardImage cardImage = new CardImage();

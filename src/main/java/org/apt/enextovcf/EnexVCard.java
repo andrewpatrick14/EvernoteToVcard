@@ -25,12 +25,13 @@ import static java.util.Map.entry;
 @NonNullByDefault
 public class EnexVCard {
 
-    private static final Map<String, String> fieldNameMap = Map.ofEntries(entry("display-as", "FN"), entry("fullName", "FN"),
-            entry("phone", "TEL"), entry("address", "ADR"), entry("contactNotes", "NOTE"), entry("website", "URL"),
+    private static final Map<String, String> fieldNameMap = Map.ofEntries(entry("display-as", "FN"), entry("fullname", "FN"),
+            entry("phone", "TEL"), entry("address", "ADR"), entry("contactnotes", "NOTE"), entry("note-body", "NOTE"),
+            entry("website", "URL"),
             entry("contact-title", "TITLE"), entry("social", "X-SOCIALPROFILE"), entry("contact-org", "ORG"),
             entry("organization", "ORG"));
     private static final Map<String, String> socialMediaMap = Map.ofEntries(
-            entry("linkedin", "http://www.linkedin.com/in/{0}"), entry("flickr", "http://www.flickr.com/photos/{0}"),
+            entry("linkedipn", "http://www.linkedin.com/in/{0}"), entry("flickr", "http://www.flickr.com/photos/{0}"),
             entry("facebook", "http://www.facebook.com/{0}"), entry("twitter", "http://twitter.com/{0}"));
 
 
@@ -101,7 +102,8 @@ public class EnexVCard {
             props.add(photo);
         }
         for (FieldContent field : card.getFields()) {
-            String vCardFieldName = fieldNameMap.getOrDefault(field.fieldName(),
+            assert(!field.fieldValue().isEmpty());
+            String vCardFieldName = fieldNameMap.getOrDefault(field.fieldName().toLowerCase(),
                     field.fieldName().toUpperCase(Locale.UK));
             String value = field.fieldValue();
             String type = field.fieldType();
@@ -119,7 +121,7 @@ public class EnexVCard {
                     break;
                 }
                 case "TEL": {
-                    p = new Telephone(value, t);
+                    p = t == null ? new Telephone(value) : new Telephone(value);
                     break;
                 }
                 case "ADR": {
