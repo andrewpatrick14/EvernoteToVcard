@@ -42,6 +42,10 @@ names from the evernote business card fields.
 
 The option -s name will output all the contacts to a single large vcf file. 
 
+A common error is to have more than one java on your system - with your path
+pointing to a version earlier that 17. Check this by typing java -version in a shell.
+
+
 
 
 
