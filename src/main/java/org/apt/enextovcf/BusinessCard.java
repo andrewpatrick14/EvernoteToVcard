@@ -4,6 +4,8 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -11,6 +13,9 @@ import java.util.regex.Pattern;
 
 @NonNullByDefault
 public class BusinessCard {
+
+    private static final Logger logger = LoggerFactory.getLogger(BusinessCard.class);
+
 
     private List<FieldContent> fields = new ArrayList<>();
     private Map<String, Set<String>> fieldsmap = new HashMap<>(); // created on demand
@@ -120,7 +125,7 @@ public class BusinessCard {
                         resultList.add(new FieldContent(fieldName, fieldType, fieldValue));
                 }
             } catch (Exception e) {
-                System.err.println("Ignoring Parse Error in " + fieldName);
+                logger.debug("Ignoring Parse Error in " + fieldName);
             }
         }
         return resultList;

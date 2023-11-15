@@ -86,7 +86,7 @@ public class ProfileImage {
             Elements children = element.children();
             for (Element child : children) {
                 String style = child.attr("style");
-                if (compiledSearch.matcher(style).find() && style.contains(imagetag)) {
+                if (compiledSearch.matcher(style).find() && child.nodeName().equals(imagetag)) {
                     hashAttribute = child.attr("hash");
                     break; // Stop processing after the first valid match
                 }

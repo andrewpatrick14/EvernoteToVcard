@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e398d099-5d9a-46c7-afc6-9e1ecd6de31c" name="Changes" comment="Update to readme">
+    <list default="true" id="e398d099-5d9a-46c7-afc6-9e1ecd6de31c" name="Changes" comment="Update to readme and tidying">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/BusinessCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/BusinessCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/CSVContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/CSVContent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/EnexNote.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/EnexNote.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/EnexVCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/EnexVCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/ProfileImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/apt/enextovcf/ProfileImage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +82,7 @@
       <command value="mvn jar:jar shade:shade" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.BusinessCardTest">
+  <component name="RunManager">
     <configuration name="BusinessCardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EvernoteToVCard" />
       <extension name="coverage">
@@ -173,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699807464623</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Update to readme and tidying">
+      <option name="closed" value="true" />
+      <created>1700060001670</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700060001670</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -181,7 +185,8 @@
     <MESSAGE value="Test for multiple notes in single enex" />
     <MESSAGE value="Initial Release fixed bug in single vcf version (-s)" />
     <MESSAGE value="Update to readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update to readme" />
+    <MESSAGE value="Update to readme and tidying" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update to readme and tidying" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -227,6 +232,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/apt/enextovcf/Main.java</url>
           <line>67</line>
           <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/apt/enextovcf/CardImageTest.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/apt/enextovcf/CardImage.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
