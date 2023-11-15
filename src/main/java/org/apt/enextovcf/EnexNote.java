@@ -1,26 +1,27 @@
 package org.apt.enextovcf;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.NonNullByDefault;
+import org.jsoup.Jsoup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.jsoup.Jsoup;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import static java.lang.System.exit;
 
 @NonNullByDefault
 public class EnexNote {
+
+    private static final Logger logger = LoggerFactory.getLogger(EnexNote.class);
 
     private String content = "";
     private org.jsoup.nodes.Document xmlContent = new org.jsoup.nodes.Document("");
@@ -59,11 +60,28 @@ public class EnexNote {
                     enexNotes.add(enexNote);
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            logger.error("Error reading file " + filename);
+            exit(1);
+        } catch (SAXException e) {
+            logger.error("XML errors in file " + filename, e);
+            exit(1);
+        }
+        catch (ParserConfigurationException e) {
+            logger.error("Parser Configuration ", e);
+            exit(1);
         }
 
         return enexNotes;
+    }
+
+    @NonNull
+    private String getResourceElement(Element e, String name) {
+        var elements = e.getElementsByTagName(name);
+        String result = "";
+        if (elements.getLength() > 0 && elements.item(0) != null)
+            result = elements.item(0).getTextContent();
+        return result == null ? "" : result;
     }
 
     @SuppressWarnings("null")
@@ -78,33 +96,23 @@ public class EnexNote {
 
             for (int i = 0; i < resourceNodes.getLength(); i++) {
                 Element resourceElement = (Element) resourceNodes.item(i);
-                Optional<String> mime = Optional.ofNullable(resourceElement.
-                        getElementsByTagName("mime").item(0).getTextContent());
-                Optional<String> data = Optional.ofNullable(resourceElement
-                        .getElementsByTagName("data").item(0).getTextContent());
-                Optional<String> filename;
-                try {
-                    filename = Optional.ofNullable(resourceElement.
-                            getElementsByTagName("file-name").item(0).getTextContent());
-
-                }
-                catch (Exception e) {
-                    filename = Optional.empty();
-                }
+                String mime = getResourceElement(resourceElement, "mime");
+                String data = getResourceElement(resourceElement, "data");
+                String filename = getResourceElement(resourceElement, "file-name");
 
                 // Calculate the hashcode using the extract-hash function (provide your implementation)
 
                 // Create a ResourceRecord and add it to the map
-                if (data.isPresent() && mime.isPresent()) {
-                    var datast = data.get().trim();
+                if (!data.isEmpty() && !mime.isEmpty()) {
+                    var datast = data.trim();
                     var bytedata = Base64.getMimeDecoder().decode(datast);
                     String charMD5 = DigestUtils.md5Hex(bytedata);
-                    ResourceRecord resourceRecord = new ResourceRecord(mime.orElse(""), bytedata, filename.orElse(""));
+                    ResourceRecord resourceRecord = new ResourceRecord(mime, bytedata, filename);
                     resourceMap.put(charMD5, resourceRecord);
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (DOMException e) {
+            logger.error("XML Format Error in Enex", e);
         }
     }
 
@@ -123,8 +131,7 @@ public class EnexNote {
     }
 
 
-
-    record ResourceRecord(String mime, byte[] data, String fileName) {
+    public record ResourceRecord(String mime, byte[] data, String fileName) {
 
         public boolean isEmpty() {
             return data.length == 0;
@@ -134,11 +141,9 @@ public class EnexNote {
 
 
 
-    public void setXml(org.jsoup.nodes.Document document) {
-        if (document != null) {
-            this.xmlContent = document;
-            this.parsed = true;
-        }
+    public void setXml(org.jsoup.nodes.Document doc) {
+        this.xmlContent = doc;
+        this.parsed = true;
 
     }
 }

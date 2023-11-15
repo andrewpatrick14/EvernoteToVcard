@@ -1,6 +1,8 @@
 package org.apt.enextovcf;
 
 import org.apache.commons.cli.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,6 +13,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Main{
+
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
         // Create a new Options object to define the expected command line options
         Options options = createOptions();
@@ -66,15 +71,15 @@ public class Main{
                         writer.newLine();
                     }
                 } catch (IOException e) {
-                    System.err.println("IO Exception writing to " + outVCFFile);
-                    e.printStackTrace();
+                    logger.error("IO Exception writing to " + outVCFFile);
+                    System.exit(1);
                 }
             } else {
-                vcards.stream().forEach(x -> x.write(outDir));
-                if (cmd.hasOption('d')) vcards.stream().forEach(x -> x.writeCardImage(outDir));
+                vcards.forEach(x -> x.write(outDir));
+                if (cmd.hasOption('d')) vcards.forEach(x -> x.writeCardImage(outDir));
             }
         } catch (ParseException e) {
-            System.err.println("Error parsing command line arguments: " + e.getMessage());
+            System.out.println("Error parsing command line arguments: " + e.getMessage());
             printUsage(options);
         }
 

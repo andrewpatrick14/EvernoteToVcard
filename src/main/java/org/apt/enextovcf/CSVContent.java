@@ -47,7 +47,6 @@ public class CSVContent {
      * @return a line of CVS
      */
     private String getCSVLine(Map<String, FieldContent> fieldMap) {
-        List<String> headers = new ArrayList<>(headerList);
         StringBuilder sb = new StringBuilder(headerList.size() * 10);
         for (String hd : headerList) {
             String value = "";
@@ -76,7 +75,7 @@ public class CSVContent {
         if (header.isEmpty()) {
             StringBuilder sb = new StringBuilder(headerList.size() * 10);
             for (String hd : headerList) {
-                sb.append("\"" + hd + "\",");
+                sb.append("\"").append(hd).append("\",");
             }
             sb.deleteCharAt(sb.length() - 1); //final ,
             header = sb.toString();

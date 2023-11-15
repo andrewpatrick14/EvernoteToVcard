@@ -36,6 +36,7 @@ public class BusinessCard {
         return fieldsmap;
     }
 
+    @SuppressWarnings("unused")
     public boolean isEmpty() {
         return fields.isEmpty();
     }
@@ -81,6 +82,7 @@ public class BusinessCard {
         return new ArrayList<>(fieldList);
     }
 
+    @SuppressWarnings("UnusedAssignment")
     private static List<FieldContent> getFieldInfo(String fieldMarker, String typeMarker, String valueMarker,
                                                    Elements nodes) {
         var resultList = new ArrayList<FieldContent>();

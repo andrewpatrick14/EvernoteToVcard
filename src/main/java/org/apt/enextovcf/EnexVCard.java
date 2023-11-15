@@ -9,10 +9,13 @@ import net.fortuna.ical4j.vcard.parameter.Type;
 import net.fortuna.ical4j.vcard.property.*;
 import org.apt.enextovcf.BusinessCard.FieldContent;
 import org.eclipse.jdt.annotation.NonNullByDefault;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.net.URISyntaxException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.text.ParseException;
@@ -22,6 +25,9 @@ import static java.util.Map.entry;
 
 @NonNullByDefault
 public class EnexVCard {
+
+    private static final Logger logger = LoggerFactory.getLogger(EnexVCard.class);
+
 
     private static final Map<String, String> fieldNameMap = Map.ofEntries(entry("display-as", "FN"), entry("fullname", "FN"),
             entry("phone", "TEL"), entry("address", "ADR"), entry("contactnotes", "NOTE"), entry("note-body", "NOTE"),
@@ -60,7 +66,7 @@ public class EnexVCard {
 
     /**Write this card to the given stream
      * @throws ValidationException if the vcard format is invalid
-     * @throws IOException
+     * @throws IOException not used as this is writing to a string
      */
     public String writeString() throws IOException{
         var sw = new StringWriter();
@@ -113,7 +119,7 @@ public class EnexVCard {
             List<Parameter> tlist = new ArrayList<>();
             if (t != null)
                 tlist.add(t);
-            Property p = null;
+            Property p;
             switch (vCardFieldName) {
                 case "FN": {
                     fullName = value;
@@ -121,7 +127,7 @@ public class EnexVCard {
                     break;
                 }
                 case "TEL": {
-                    p = t == null ? new Telephone(value) : new Telephone(value);
+                    p = t == null ? new Telephone(value) : new Telephone(value, t);
                     break;
                 }
                 case "ADR": {
@@ -174,7 +180,7 @@ public class EnexVCard {
                     break;
                 }
                 default: {
-                    System.err.println("Unknown field " + vCardFieldName);
+                    logger.debug("Unknown field " + vCardFieldName);
                     p = null;
                 }
 

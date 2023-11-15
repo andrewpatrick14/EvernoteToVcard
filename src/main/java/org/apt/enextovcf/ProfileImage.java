@@ -16,9 +16,6 @@ import org.jsoup.select.Elements;
  * this is not the image of the business card itself but typically the face of
  * the contact.
  */
-/**
- *
- */
 public class ProfileImage {
 
     protected static String[] hashesToSkip = { "3eaff6cec30aabd4655a8ea26fd9a9a1", "dd1ebfba7d74872f3eaf1ab971bd87c3" };
@@ -76,8 +73,9 @@ public class ProfileImage {
      * @param resourceStyleMarker the marker for resource types
      * @param resourceStyleType the marker for profile images
      * @param divMarker the marker for the div or span containing the profile image
-     * @return
+     * @return returns the hash string for the given image
      */
+    @SuppressWarnings("SameParameterValue")
     protected String findImageInXML(Document xml, String imagetag, String resourceStyleMarker, String resourceStyleType,
                                     String divMarker) {
         String hashAttribute = "";
@@ -88,7 +86,7 @@ public class ProfileImage {
             Elements children = element.children();
             for (Element child : children) {
                 String style = child.attr("style");
-                if (compiledSearch.matcher(style).find()) {
+                if (compiledSearch.matcher(style).find() && style.contains(imagetag)) {
                     hashAttribute = child.attr("hash");
                     break; // Stop processing after the first valid match
                 }
@@ -102,7 +100,7 @@ public class ProfileImage {
     }
 
     /**Get the image type e.g jpeg
-     * @return
+     * @return the image type
      */
     public String getImageType() {
         return imageType;
