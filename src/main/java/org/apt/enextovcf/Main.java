@@ -19,6 +19,7 @@ public class Main{
     public static void main(String[] args) {
         // Create a new Options object to define the expected command line options
         Options options = createOptions();
+        logger.info("Logging at info level");
 
         // Create the command line parser
         CommandLineParser parser = new DefaultParser();
